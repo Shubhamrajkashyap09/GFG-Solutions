@@ -54,38 +54,19 @@ class GFG {
 
 
 class Solution {
-    private static int[][][] dp;
-
-    private static boolean solve(int idx, int k, int target, int[] coins) {
-        if (k == 0 && target == 0)
-            return true;
-
-        if (idx == coins.length || k == 0)
-            return false;
-
-        if (dp[idx][k][target] != -1)
-            return dp[idx][k][target] == 1;
-
-        for (int i = 1;; i++) {
-            if (k - i < 0 || (coins[idx] * i > target))
-                break;
-            if (solve(idx + 1, k - i, target - (coins[idx] * i), coins)) {
-                dp[idx][k][target] = 1;
-                return true;
-            }
-        }
-
-        dp[idx][k][target] = solve(idx + 1, k, target, coins) ? 1 : 0;
-        return dp[idx][k][target] == 1;
-    }
-
     public static boolean makeChanges(int N, int K, int target, int[] coins) {
-        dp = new int[N][K + 1][target + 1];
-        for (int[][] x : dp) {
-            for (int[] y : x) {
-                Arrays.fill(y, -1);
+        // code here
+        boolean[][] dp = new boolean[101][1001];
+        dp[0][0] = true;
+        for (int k = 1; k <= K; k++) {
+            for (int t = 0; t <= target; t++) {
+                if (dp[k-1][t]) {
+                    for (int i = 0; i < coins.length; i++) {
+                        dp[k][t+coins[i]] = true;
+                    }
+                }      
             }
         }
-        return solve(0, K, target, coins);
+        return dp[K][target];
     }
 }
