@@ -35,23 +35,24 @@ class GFG {
 
 
 class Solution {
-    public void dfs(int node,ArrayList<Integer> list,boolean[] visited,ArrayList<ArrayList<Integer>> adj){
-        visited[node]=true;
-        list.add(node);
-        for(int i:adj.get(node)){
-            if(!visited[i]){
-                visited[i]=true;
-                dfs(i,list,visited,adj);
-            }
-        }
-    }
-    
     // Function to return a list containing the DFS traversal of the graph.
     public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
-        boolean visited[] = new boolean[V];
-        ArrayList<Integer> list=new ArrayList<>();
-        dfs(0,list,visited,adj);
-        return list;
+        ArrayList<Integer> arr = new ArrayList<>();
+        arr.add(0);
+        recursiveDFS(adj,arr,0);
+        return arr;
+        
+    }
+ 
+    public static void recursiveDFS(ArrayList<ArrayList<Integer>> adj, ArrayList arr, int row){
+        int len = adj.get(row).size();
+        for(int i=0; i<len; i++){
+            int num = adj.get(row).get(i);
+            if(!arr.contains(num)){
+                arr.add(num);
+                recursiveDFS(adj,arr,num);
+            }
+        }
     }
 }
