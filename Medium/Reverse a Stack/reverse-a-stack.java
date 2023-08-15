@@ -45,17 +45,27 @@ class GFG
 
 class Solution
 { 
-    static LinkedList<Integer> list=new LinkedList<>();
-    static void reverse(Stack<Integer> s)
+    static void reverse(Stack<Integer> st)
     {
         // add your code here
-        if(s.empty())
-        {
-          return;
+        if(st.size()==1) return;
+        int x=st.pop();
+        reverse(st);
+        InsertAtBot(st,x);
+    }
+    static  void InsertAtBot(Stack<Integer> st,int x){
+        if(st.isEmpty()){
+            st.push(x);
         }
-        list.add(s.pop());
-        reverse(s);
-        s.push(list.poll());
-        
+        else{
+            Stack<Integer> rt = new Stack<>();
+            while(!st.isEmpty()){
+                rt.push(st.pop());
+            }
+            st.push(x);
+            while(!rt.isEmpty()){
+                st.push(rt.pop());
+            }
+        }
     }
 }
