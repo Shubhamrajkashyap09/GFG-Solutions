@@ -38,15 +38,12 @@ public class Main {
 class Solution {
     int count(int[] arr, int n, int x) {
         // code here
-        Map<Integer, Integer> hashmap = new HashMap<>();
-        
-        for(int i=0; i<n; i++){
-            hashmap.put(arr[i],hashmap.getOrDefault(arr[i],0)+1);
+        int count=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]==x){
+                count++;
+            }
         }
-        
-        if(hashmap.containsKey(x))
-            return hashmap.get(x);
-        
-        return 0;
+        return count;
     }
 }
