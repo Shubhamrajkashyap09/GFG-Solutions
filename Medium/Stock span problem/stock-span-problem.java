@@ -43,6 +43,19 @@ class Solution
     public static int[] calculateSpan(int arr[], int n)
     {
         // Your code here
+        // Stack<Integer> st = new Stack<>();
+        // int[] ans = new int[n];
+        // for(int i=0;i<n;i++){
+        //     while(st.size()>0 && arr[i]>arr[st.peek()]) st.pop();
+        //     if(st.isEmpty()){
+        //         ans[i]=i+1;
+        //     }
+        //     else if(arr[i]<arr[st.peek()]){
+        //         ans[i]=i-st.peek();
+        //     }
+        //     st.push(i);
+        // }
+        // return ans;
         Stack<Integer> st = new Stack<>();
         int[] ans = new int[n];
         ans[0]=1;
