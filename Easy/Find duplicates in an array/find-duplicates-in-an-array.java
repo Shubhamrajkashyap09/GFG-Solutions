@@ -25,19 +25,21 @@ class GFG {
 class Solution {
     public static ArrayList<Integer> duplicates(int arr[], int n) {
         // code here
-        ArrayList<Integer> List=new ArrayList<>();
-        int[] freq=new int[100005];
-        for(int i=0;i<n;i++){
-            freq[arr[i]]++;
+         ArrayList<Integer> ans=new ArrayList<>();
+        int max=arr[0];
+        for(int i=0;i<n;i++) {
+            max=Math.max(max,arr[i]);
         }
-        for(int i=0;i<freq.length;i++){
-            if(freq[i]>1){
-                List.add(Integer.valueOf(i));
+        int[] dup=new int[max+1];
+        for(int i=0;i<n;i++) {
+            if(++dup[arr[i]] == 2) {
+                ans.add(arr[i]);
             }
         }
-        if(List.isEmpty()){
-            List.add(-1);
+        Collections.sort(ans);
+        if(ans.size()==0) {
+            ans.add(-1);
         }
-        return List;
+        return ans;
     }
 }
